@@ -1,39 +1,43 @@
 {
-    "extends": [
-      "airbnb",
-      "plugin:flowtype/recommended",
-      "plugin:jest/recommended"
-    ],
-    "rules": {
-      "no-mixed-spaces-and-tabs": [2, "smart-tabs"],
-      "react/jsx-filename-extension": [ 1, { 
-        "extensions": [".js", ".jsx"] 
-      }],
-      "react/destructuring-assignment": ["<enabled>", "always"],
-      "react/forbid-prop-types": [2, { "forbid": [], "checkContextTypes": false, "checkChildContextTypes": false }],
-      "jsx-a11y/anchor-has-content": [ 2, {
-        "components": [ "Anchor" ]
-      }],
-      "semi":[2, "never"],
-      "quotes": [2, "single"],
-      "no-tabs": 0
-    },
-    "parserOptions": {
-      "ecmaVersion": 6,
-      "sourceType": "module"
-    },
-    "plugins": [
-      "flowtype"
-    ],
-    "settings": {
-      "import/resolver": {
-        "babel-root-import": {
-          "rootPathPrefix": "~",
-          "rootPathSuffix": "./src"
-        }
+  "extends": [
+    "airbnb",
+    "plugin:flowtype/recommended",
+    "plugin:jest/recommended"
+  ],
+  "rules": {
+    "no-undef": 2,
+    "no-mixed-spaces-and-tabs": [2, "smart-tabs"],
+    "react/jsx-filename-extension": [ 1, { 
+      "extensions": [".js", ".jsx"] 
+    }],
+    "react/destructuring-assignment": ["<enabled>", "always"],
+    "react/forbid-prop-types": [2, { "forbid": [], "checkContextTypes": false, "checkChildContextTypes": false }],
+    "jsx-a11y/anchor-has-content": [ 2, {
+      "components": [ "Anchor" ]
+    }],
+    "semi":[2, "never"],
+    "quotes": [2, "single"],
+    "no-tabs": 0
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "flowtype"
+  ],
+  "globals": {
+    "__DEV__": false
+  },
+  "settings": {
+    "import/resolver": {
+      "babel-root-import": {
+        "rootPathPrefix": "~",
+        "rootPathSuffix": "./src"
       }
-    },
-    "env": {
-      "browser": true
     }
+  },
+  "env": {
+    "browser": true
   }
+}

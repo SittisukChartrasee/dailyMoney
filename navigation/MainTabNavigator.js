@@ -1,79 +1,54 @@
-import React from 'react';
-import { Platform } from 'react-native';
-import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import {
+  createStackNavigator,
+  createBottomTabNavigator,
+} from 'react-navigation'
+import HomeScreen from '../screens/HomeScreen'
+import LinksScreen from '../screens/LinksScreen'
+import SettingsScreen from '../screens/SettingsScreen'
+import MoneyScreen from '../screens/MoneyScreen'
+import {
+  HomeStackIcon,
+  LinksStackIcon,
+  SettingsStackIcon,
+  MoneyStackIcon,
+} from './ComponentIcon'
 
-import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
-import SettingsScreen from '../screens/SettingsScreen';
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen,
-});
-
+})
 HomeStack.navigationOptions = {
   tabBarLabel: 'Home',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
-      }
-    />
-  ),
-};
+  tabBarIcon: HomeStackIcon,
+}
 
 const LinksStack = createStackNavigator({
-  Links: LinksScreen,
-});
-
+  Home: LinksScreen,
+})
 LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
-    />
-  ),
-};
+  tabBarLabel: 'Home',
+  tabBarIcon: LinksStackIcon,
+}
 
 const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen,
-});
-
+  Home: SettingsScreen,
+})
 SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'}
-    />
-  ),
-};
+  tabBarLabel: 'Home',
+  tabBarIcon: SettingsStackIcon,
+}
 
 const MoneyStack = createStackNavigator({
-  Moneys: SettingsScreen,
+  Moneys: MoneyScreen,
 })
-
 MoneyStack.navigationOptions = {
-  tabBarLabel: 'Settings',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
-      }
-    />
-  ),
-};
+  tabBarLabel: 'Money',
+  tabBarIcon: MoneyStackIcon,
+}
 
 export default createBottomTabNavigator({
   // HomeStack,
   // LinksStack,
   MoneyStack,
   // SettingsStack,
-});
+})
