@@ -10,6 +10,7 @@ import {
 } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import numeral from 'numeral'
 import updateItems, { resetItems } from '../redux/actions/item-action'
 
 
@@ -117,7 +118,7 @@ export default class extends React.Component {
                   }}
                 >
                   <Text style={{ fontSize: 20, color: 'orange' }}>
-                    {`${sumPrice(data)} บาท`}
+                    {`${numeral(sumPrice(data.filter(d => !d.lineText))).format('0,0')} บาท`}
                   </Text>
                 </View>
                 <TouchableOpacity
@@ -150,7 +151,7 @@ export default class extends React.Component {
                         alignItems: 'center',
                       }}
                     >
-                      <Text style={styles(d.lineText)}>{d.prise}</Text>
+                      <Text style={styles(d.lineText)}>{numeral(d.prise).format('0,0')}</Text>
                       { d.prise && <Text style={styles(d.lineText)}> : </Text> }
                       <Text style={styles(d.lineText)}>{d.title}</Text>
                     </TouchableOpacity>
