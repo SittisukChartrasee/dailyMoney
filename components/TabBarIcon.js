@@ -1,9 +1,15 @@
 import React from 'react'
+import PropsType from 'prop-types'
 import { Icon } from 'expo'
 
 import Colors from '../constants/Colors'
 
 export default class TabBarIcon extends React.Component {
+  static propTypes = {
+    name: PropsType.any.isRequired,
+    focused: PropsType.any.isRequired,
+  }
+
   a = () => {}
 
   render() {

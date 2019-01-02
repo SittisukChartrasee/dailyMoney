@@ -1,2 +1,3 @@
 export const CHROOT = 'CHROOT'
-export const CHFATCA = 'CHFATCA'
+export const ADDITEM = 'ADDITEM'
+export const RESETITEM = 'RESETITEM'
