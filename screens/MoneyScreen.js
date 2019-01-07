@@ -4,6 +4,7 @@ import {
   View,
   Text,
   TextInput,
+  Animated,
   ScrollView,
   TouchableOpacity,
   KeyboardAvoidingView,
@@ -13,6 +14,7 @@ import { bindActionCreators } from 'redux'
 import numeral from 'numeral'
 import updateItems, { resetItems } from '../redux/actions/item-action'
 
+const ACTION_TIMER = 400
 
 const sumPrice = arr => arr.reduce((total, num) => total + +num.prise, 0)
 
@@ -36,6 +38,37 @@ export default class extends React.Component {
 
   state = {
     text: '',
+    pressAction: new Animated.Value(0),
+    textComplete: '',
+  }
+
+  componentDidMount = () => {
+    this.value = 0
+    this.state.pressAction.addListener((v) => { this.value = v.value })
+  }
+
+  handlePressIn = () => {
+    Animated.timing(this.state.pressAction, {
+      duration: ACTION_TIMER,
+      toValue: 1,
+    }).start(this.animationActionComplete)
+  }
+
+  handlePressOut = () => {
+    Animated.timing(this.state.pressAction, {
+      duration: this.value * ACTION_TIMER,
+      toValue: 0,
+    }).start()
+  }
+
+  animationActionComplete = () => {
+    let message = ''
+    if (this.value === 1) {
+      message = 'You held it long enough to fire the action!'
+    }
+    this.setState({
+      textComplete: message,
+    })
   }
 
   onChange = (text) => {
@@ -92,6 +125,9 @@ export default class extends React.Component {
             <Text>10 : เงินเก็บฉุกเฉิน</Text>
             <Text>5  : บริจาค</Text>
           </View>
+          <View>
+            <Text>{this.state.textComplete}</Text>
+          </View>
           <View style={{ flex: 2 }}>
 
             <View style={{
@@ -143,6 +179,8 @@ export default class extends React.Component {
                   data.map((d, i) => (
                     <TouchableOpacity
                       onPress={() => this.onSelect(i)}
+                      onPressIn={this.handlePressIn}
+                      onPressOut={this.handlePressOut}
                       key={`${d + i}`}
                       style={{
                         flexDirection: 'row',
